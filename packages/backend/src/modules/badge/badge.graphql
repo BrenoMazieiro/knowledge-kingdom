@@ -1,0 +1,13 @@
+type PlayerBadge {
+  id: ID!
+  playerId: ID!
+  badgeType: String!
+  scopeType: String!
+  scopeId: ID
+  quillsEarned: Int!
+  earnedAt: DateTime!
+}
+
+extend type Query {
+  myBadges: [PlayerBadge!]!
+}

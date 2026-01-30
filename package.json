@@ -1,0 +1,39 @@
+{
+  "name": "knowledge-kingdom",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "packageManager": "pnpm@10.5.2",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@apollo/protobufjs",
+      "bcrypt",
+      "esbuild",
+      "msgpackr-extract"
+    ]
+  },
+  "scripts": {
+    "dev": "docker compose up",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "pnpm -r run typecheck",
+    "test": "pnpm -r run test",
+    "test:e2e": "pnpm --filter @kk/e2e run test",
+    "db:generate": "pnpm --filter @kk/backend run db:generate",
+    "db:migrate": "pnpm --filter @kk/backend run db:migrate",
+    "db:seed": "pnpm --filter @kk/backend run db:seed",
+    "db:studio": "pnpm --filter @kk/backend run db:studio",
+    "codegen": "pnpm --filter @kk/backoffice run codegen"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.8.1",
+    "typescript-eslint": "^8.54.0"
+  }
+}

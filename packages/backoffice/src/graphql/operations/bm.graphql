@@ -1,0 +1,19 @@
+query GetBackofficeManagers {
+  backofficeManagers {
+    id
+    email
+    name
+    permissionLevel
+    createdAt
+  }
+}
+
+mutation InviteBM($input: InviteBMInput!) {
+  inviteBM(input: $input) {
+    id
+    email
+    name
+    permissionLevel
+    createdAt
+  }
+}

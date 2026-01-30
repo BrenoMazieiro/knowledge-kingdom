@@ -1,0 +1,52 @@
+input SignInInput {
+  email: String!
+  password: String!
+}
+
+input SignUpInput {
+  name: String!
+  gameName: String!
+  email: String!
+  password: String!
+}
+
+input ValidateEmailInput {
+  token: String!
+}
+
+input ChangePasswordInput {
+  currentPassword: String!
+  newPassword: String!
+}
+
+type AuthPayload {
+  user: User!
+}
+
+type UserDataExport {
+  profile: UserProfile!
+  exportedAt: DateTime!
+}
+
+type UserProfile {
+  id: ID!
+  email: String!
+  name: String!
+  gameName: String!
+  emailVerified: Boolean!
+  createdAt: DateTime!
+}
+
+extend type Query {
+  me: User
+  exportMyData: UserDataExport!
+}
+
+extend type Mutation {
+  signIn(input: SignInInput!): AuthPayload!
+  signUp(input: SignUpInput!): AuthPayload!
+  signOut: Boolean!
+  validateEmail(input: ValidateEmailInput!): Boolean!
+  deleteMyAccount: Boolean!
+  changePassword(input: ChangePasswordInput!): Boolean!
+}

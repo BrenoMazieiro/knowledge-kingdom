@@ -1,0 +1,51 @@
+type House {
+  id: ID!
+  version: Int!
+  villageId: ID!
+  creatorId: ID!
+  ownerType: String!
+  name: String!
+  description: String
+  iconUrl: String
+  isFree: Boolean!
+  entryPrice: Int
+  visibility: String!
+  status: String!
+  sortOrder: Int!
+  createdAt: DateTime!
+  village: Village!
+  creator: User!
+  contents: [Content!]!
+}
+
+input CreateHouseInput {
+  villageId: ID!
+  name: String!
+  description: String
+  iconUrl: String
+  isFree: Boolean! = true
+  entryPrice: Int
+  visibility: String
+}
+
+input UpdateHouseInput {
+  id: ID!
+  version: Int!
+  name: String
+  description: String
+  iconUrl: String
+  isFree: Boolean
+  entryPrice: Int
+  visibility: String
+}
+
+extend type Query {
+  house(id: ID!): House!
+  houses(villageId: ID!, pagination: PaginationInput): [House!]!
+}
+
+extend type Mutation {
+  createHouse(input: CreateHouseInput!): House!
+  updateHouse(input: UpdateHouseInput!): House!
+  deleteHouse(id: ID!, version: Int!): Boolean!
+}

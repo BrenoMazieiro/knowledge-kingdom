@@ -1,0 +1,35 @@
+type LeadershipTitle {
+  id: ID!
+  entityType: String!
+  entityId: ID!
+  playerId: ID!
+  title: String!
+  acquiredMethod: String!
+  gracePeriodUntil: DateTime
+  acquiredAt: DateTime!
+}
+
+type DuelChallenge {
+  id: ID!
+  entityType: String!
+  entityId: ID!
+  challengerId: ID!
+  defenderId: ID!
+  status: String!
+  challengerScore: Int
+  defenderScore: Int
+  winnerId: ID
+  quillsCost: Int!
+  challengedAt: DateTime!
+  respondedAt: DateTime
+  completedAt: DateTime
+}
+
+extend type Query {
+  myTitles: [LeadershipTitle!]!
+}
+
+extend type Mutation {
+  claimTitle(entityType: String!, entityId: ID!): LeadershipTitle!
+  challengeLeader(entityType: String!, entityId: ID!): DuelChallenge!
+}

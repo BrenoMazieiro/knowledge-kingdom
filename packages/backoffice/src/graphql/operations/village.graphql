@@ -1,0 +1,99 @@
+query GetVillages($kingdomId: ID!) {
+  villages(kingdomId: $kingdomId) {
+    id
+    version
+    kingdomId
+    name
+    description
+    iconUrl
+    visibility
+    status
+    chancellorId
+    treasuryBalance
+    sortOrder
+    createdAt
+  }
+}
+
+query GetVillage($id: ID!) {
+  village(id: $id) {
+    id
+    version
+    kingdomId
+    name
+    description
+    iconUrl
+    visibility
+    status
+    chancellorId
+    treasuryBalance
+    sortOrder
+    createdAt
+    kingdom {
+      id
+      name
+    }
+    houses {
+      id
+      name
+      sortOrder
+    }
+  }
+}
+
+query GetVillageOverview($villageId: ID!) {
+  villageOverview(villageId: $villageId) {
+    village {
+      id
+      version
+      name
+      description
+      iconUrl
+      visibility
+      status
+      treasuryBalance
+      sortOrder
+      createdAt
+      kingdom { id name }
+    }
+    houseCount
+    questionCount
+    contentCount
+    conquests
+    badgesEarned
+  }
+}
+
+mutation CreateVillage($input: CreateVillageInput!) {
+  createVillage(input: $input) {
+    id
+    version
+    kingdomId
+    name
+    description
+    iconUrl
+    visibility
+    status
+    sortOrder
+    createdAt
+  }
+}
+
+mutation UpdateVillage($input: UpdateVillageInput!) {
+  updateVillage(input: $input) {
+    id
+    version
+    kingdomId
+    name
+    description
+    iconUrl
+    visibility
+    status
+    sortOrder
+    createdAt
+  }
+}
+
+mutation DeleteVillage($id: ID!, $version: Int!) {
+  deleteVillage(id: $id, version: $version)
+}

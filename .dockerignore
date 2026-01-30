@@ -1,0 +1,17 @@
+node_modules
+**/node_modules
+**/dist
+**/.env
+**/.env.local
+.git
+.github
+.vscode
+*.md
+!packages/backoffice/nginx.conf
+packages/e2e
+**/*.test.ts
+**/*.spec.ts
+**/coverage
+**/tsconfig.tsbuildinfo
+docker-compose*.yml
+Dockerfile*

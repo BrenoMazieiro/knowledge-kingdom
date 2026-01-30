@@ -1,0 +1,40 @@
+import { userRepository } from '../user/repository/userRepositoryModule';
+import { walletRepository } from '../wallet/repository/walletRepositoryModule';
+import { sessionRepository } from './repository/sessionRepositoryModule';
+import { LocalAuthProvider } from './localAuthProvider';
+import { SignUpUseCase } from './signup/signupUseCase';
+import { SignInUseCase } from './signin/signinUseCase';
+import { SignOutUseCase } from './signout/signoutUseCase';
+import { GetMeUseCase } from './me/getMeUseCase';
+import { ValidateEmailUseCase } from './validateEmail/validateEmailUseCase';
+import { DeleteMyAccountUseCase } from './deleteMyAccount/deleteMyAccountUseCase';
+import { ExportMyDataUseCase } from './exportMyData/exportMyDataUseCase';
+import { ChangePasswordUseCase } from './changePassword/changePasswordUseCase';
+import { SignUpResolver } from './signup/signupResolver';
+import { SignInResolver } from './signin/signinResolver';
+import { SignOutResolver } from './signout/signoutResolver';
+import { MeResolver } from './me/meResolver';
+import { ValidateEmailResolver } from './validateEmail/validateEmailResolver';
+import { DeleteMyAccountResolver } from './deleteMyAccount/deleteMyAccountResolver';
+import { ExportMyDataResolver } from './exportMyData/exportMyDataResolver';
+import { ChangePasswordResolver } from './changePassword/changePasswordResolver';
+
+const authProvider = new LocalAuthProvider(userRepository);
+
+const signUpUseCase = new SignUpUseCase(userRepository, sessionRepository, walletRepository);
+const signInUseCase = new SignInUseCase(authProvider, sessionRepository);
+const signOutUseCase = new SignOutUseCase(sessionRepository);
+const getMeUseCase = new GetMeUseCase(userRepository);
+const validateEmailUseCase = new ValidateEmailUseCase(userRepository);
+const deleteMyAccountUseCase = new DeleteMyAccountUseCase(userRepository, sessionRepository);
+const exportMyDataUseCase = new ExportMyDataUseCase(userRepository);
+const changePasswordUseCase = new ChangePasswordUseCase(userRepository, sessionRepository, authProvider);
+
+export const signUpResolver = new SignUpResolver(signUpUseCase, getMeUseCase);
+export const signInResolver = new SignInResolver(signInUseCase, getMeUseCase);
+export const signOutResolver = new SignOutResolver(signOutUseCase);
+export const meResolver = new MeResolver(getMeUseCase);
+export const validateEmailResolver = new ValidateEmailResolver(validateEmailUseCase);
+export const deleteMyAccountResolver = new DeleteMyAccountResolver(deleteMyAccountUseCase);
+export const exportMyDataResolver = new ExportMyDataResolver(exportMyDataUseCase);
+export const changePasswordResolver = new ChangePasswordResolver(changePasswordUseCase);

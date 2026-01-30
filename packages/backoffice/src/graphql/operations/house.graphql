@@ -1,0 +1,86 @@
+query GetHouses($villageId: ID!) {
+  houses(villageId: $villageId) {
+    id
+    version
+    villageId
+    creatorId
+    ownerType
+    name
+    description
+    iconUrl
+    isFree
+    entryPrice
+    sortOrder
+    createdAt
+  }
+}
+
+query GetHouse($id: ID!) {
+  house(id: $id) {
+    id
+    version
+    villageId
+    creatorId
+    ownerType
+    name
+    description
+    iconUrl
+    isFree
+    entryPrice
+    sortOrder
+    createdAt
+    village {
+      id
+      name
+      kingdom { id name }
+    }
+    creator {
+      id
+      name
+    }
+    contents {
+      id
+      version
+      title
+      type
+      url
+      body
+      description
+      sortOrder
+      createdAt
+    }
+  }
+}
+
+mutation CreateHouse($input: CreateHouseInput!) {
+  createHouse(input: $input) {
+    id
+    version
+    villageId
+    name
+    description
+    isFree
+    entryPrice
+    sortOrder
+    createdAt
+  }
+}
+
+mutation UpdateHouse($input: UpdateHouseInput!) {
+  updateHouse(input: $input) {
+    id
+    version
+    villageId
+    name
+    description
+    iconUrl
+    isFree
+    entryPrice
+    sortOrder
+    createdAt
+  }
+}
+
+mutation DeleteHouse($id: ID!, $version: Int!) {
+  deleteHouse(id: $id, version: $version)
+}

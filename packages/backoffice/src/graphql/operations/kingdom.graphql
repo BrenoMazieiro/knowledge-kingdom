@@ -1,0 +1,89 @@
+query GetKingdoms {
+  kingdoms {
+    id
+    version
+    name
+    description
+    iconUrl
+    visibility
+    status
+    treasuryBalance
+    sortOrder
+    createdAt
+  }
+}
+
+query GetKingdom($id: ID!) {
+  kingdom(id: $id) {
+    id
+    version
+    name
+    description
+    iconUrl
+    visibility
+    status
+    treasuryBalance
+    creatorId
+    kingQueenId
+    sortOrder
+    createdAt
+    villages {
+      id
+      name
+      sortOrder
+    }
+  }
+}
+
+query GetKingdomOverview($kingdomId: ID!) {
+  kingdomOverview(kingdomId: $kingdomId) {
+    kingdom {
+      id
+      version
+      name
+      description
+      iconUrl
+      visibility
+      status
+      treasuryBalance
+      sortOrder
+      createdAt
+    }
+    villageCount
+    houseCount
+    questionCount
+    contentCount
+  }
+}
+
+mutation CreateKingdom($input: CreateKingdomInput!) {
+  createKingdom(input: $input) {
+    id
+    version
+    name
+    description
+    iconUrl
+    visibility
+    status
+    sortOrder
+    createdAt
+  }
+}
+
+mutation UpdateKingdom($input: UpdateKingdomInput!) {
+  updateKingdom(input: $input) {
+    id
+    version
+    name
+    description
+    iconUrl
+    visibility
+    status
+    sortOrder
+    createdAt
+  }
+}
+
+mutation DeleteKingdom($id: ID!, $version: Int!) {
+  deleteKingdom(id: $id, version: $version)
+}

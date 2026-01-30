@@ -1,0 +1,12 @@
+type LeaderboardEntry {
+  userId: ID!
+  gameName: String!
+  totalQuills: Int!
+  conquests: Int!
+  badgesEarned: Int!
+  rank: Int!
+}
+
+extend type Query {
+  leaderboard(limit: Int = 10): [LeaderboardEntry!]!
+}

@@ -1,0 +1,19 @@
+{
+  "appName": "O Reino do Conhecimento",
+  "nav": {
+    "dashboard": "Painel",
+    "kingdoms": "Reinos",
+    "badges": "Medalhas",
+    "signOut": "Sair"
+  },
+  "theme": {
+    "light": "Claro",
+    "dark": "Escuro",
+    "system": "Sistema"
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Este territorio ainda nao foi descoberto.",
+    "backHome": "Voltar ao Reino"
+  }
+}

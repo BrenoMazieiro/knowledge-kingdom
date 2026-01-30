@@ -1,0 +1,10 @@
+query GetLeaderboard($limit: Int) {
+  leaderboard(limit: $limit) {
+    userId
+    gameName
+    totalQuills
+    conquests
+    badgesEarned
+    rank
+  }
+}

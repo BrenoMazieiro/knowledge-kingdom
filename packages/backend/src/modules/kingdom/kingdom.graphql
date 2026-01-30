@@ -1,0 +1,54 @@
+type Kingdom {
+  id: ID!
+  version: Int!
+  name: String!
+  description: String
+  iconUrl: String
+  sortOrder: Int!
+  creatorId: ID
+  kingQueenId: ID
+  visibility: String!
+  status: String!
+  treasuryBalance: Int!
+  createdAt: DateTime!
+  villages: [Village!]!
+  creator: User
+  kingQueen: User
+}
+
+input CreateKingdomInput {
+  name: String!
+  description: String
+  iconUrl: String
+}
+
+input UpdateKingdomInput {
+  id: ID!
+  version: Int!
+  name: String
+  description: String
+  iconUrl: String
+}
+
+extend type Query {
+  kingdom(id: ID!): Kingdom!
+  kingdoms(pagination: PaginationInput): [Kingdom!]!
+}
+
+extend type Mutation {
+  createKingdom(input: CreateKingdomInput!): Kingdom!
+  updateKingdom(input: UpdateKingdomInput!): Kingdom!
+  deleteKingdom(id: ID!, version: Int!): Boolean!
+}
+
+type KingdomOverview {
+  kingdom: Kingdom!
+  villageCount: Int!
+  houseCount: Int!
+  questionCount: Int!
+  contentCount: Int!
+}
+
+extend type Query {
+  kingdomOverview(kingdomId: ID!): KingdomOverview!
+}

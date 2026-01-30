@@ -1,0 +1,32 @@
+scalar DateTime
+
+type Query {
+  _empty: String
+}
+
+type Mutation {
+  _empty: String
+}
+
+type Subscription {
+  _empty: String
+}
+
+enum SortOrder {
+  ASC
+  DESC
+}
+
+input PaginationInput {
+  page: Int! = 1
+  pageSize: Int! = 20
+  sortBy: String! = "createdAt"
+  sortOrder: SortOrder! = DESC
+}
+
+type Pagination {
+  total: Int!
+  page: Int!
+  pageSize: Int!
+  totalPages: Int!
+}

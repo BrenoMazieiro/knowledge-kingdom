@@ -1,0 +1,29 @@
+type Wallet {
+  id: ID!
+  playerId: ID!
+  balance: Int!
+  createdAt: DateTime!
+}
+
+type Transaction {
+  id: ID!
+  accountType: String!
+  accountId: ID!
+  type: String!
+  amount: Int!
+  balanceAfter: Int!
+  referenceType: String
+  referenceId: ID
+  description: String
+  createdAt: DateTime!
+}
+
+input GetTransactionsInput {
+  page: Int
+  pageSize: Int
+}
+
+extend type Query {
+  myWallet: Wallet!
+  myTransactions(input: GetTransactionsInput): [Transaction!]!
+}

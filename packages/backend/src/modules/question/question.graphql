@@ -1,0 +1,65 @@
+type QuestionOption {
+  id: ID!
+  questionId: ID!
+  text: String!
+  isCorrect: Boolean!
+  sortOrder: Int!
+}
+
+type Question {
+  id: ID!
+  version: Int!
+  houseId: ID!
+  creatorId: ID!
+  text: String!
+  difficulty: String!
+  explanation: String
+  sortOrder: Int!
+  createdAt: DateTime!
+  options: [QuestionOption!]!
+}
+
+type QuestionPool {
+  houseId: ID!
+  counts: QuestionPoolCounts!
+  total: Int!
+}
+
+type QuestionPoolCounts {
+  EASY: Int!
+  MEDIUM: Int!
+  HARD: Int!
+}
+
+input QuestionOptionInput {
+  text: String!
+  isCorrect: Boolean!
+}
+
+input CreateQuestionInput {
+  houseId: ID!
+  text: String!
+  difficulty: String!
+  explanation: String
+  options: [QuestionOptionInput!]!
+}
+
+input UpdateQuestionInput {
+  id: ID!
+  version: Int!
+  text: String
+  difficulty: String
+  explanation: String
+  options: [QuestionOptionInput!]
+}
+
+extend type Query {
+  questions(houseId: ID!): [Question!]!
+  questionPool(houseId: ID!): QuestionPool!
+}
+
+extend type Mutation {
+  createQuestion(input: CreateQuestionInput!): Question!
+  updateQuestion(input: UpdateQuestionInput!): Question!
+  deleteQuestion(id: ID!, version: Int!): Boolean!
+}

@@ -1,0 +1,19 @@
+{
+  "appName": "The Knowledge Kingdom",
+  "nav": {
+    "dashboard": "Dashboard",
+    "kingdoms": "Kingdoms",
+    "badges": "Badges",
+    "signOut": "Sign Out"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "notFound": {
+    "title": "404",
+    "message": "This territory has not been discovered yet.",
+    "backHome": "Return to the Kingdom"
+  }
+}

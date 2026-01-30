@@ -1,0 +1,20 @@
+type AccessRequest {
+  id: ID!
+  playerId: ID!
+  entityType: String!
+  entityId: ID!
+  status: String!
+  responseReason: String
+  respondedById: ID
+  requestedAt: DateTime!
+  respondedAt: DateTime
+}
+
+extend type Query {
+  accessRequests(entityType: String!, entityId: ID!): [AccessRequest!]!
+}
+
+extend type Mutation {
+  requestAccess(entityType: String!, entityId: ID!): AccessRequest!
+  respondToAccessRequest(requestId: ID!, approved: Boolean!, reason: String): AccessRequest!
+}

@@ -1,0 +1,11 @@
+type HouseEntry {
+  id: ID!
+  playerId: ID!
+  houseId: ID!
+  pricePaid: Int!
+  enteredAt: DateTime!
+}
+
+extend type Mutation {
+  enterHouse(houseId: ID!): HouseEntry!
+}

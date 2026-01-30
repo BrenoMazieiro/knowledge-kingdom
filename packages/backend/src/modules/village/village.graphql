@@ -1,0 +1,60 @@
+type Village {
+  id: ID!
+  version: Int!
+  kingdomId: ID!
+  name: String!
+  description: String
+  iconUrl: String
+  sortOrder: Int!
+  creatorId: ID
+  chancellorId: ID
+  managerId: ID
+  visibility: String!
+  status: String!
+  treasuryBalance: Int!
+  createdAt: DateTime!
+  kingdom: Kingdom!
+  houses: [House!]!
+  creator: User
+  chancellor: User
+  manager: User
+}
+
+input CreateVillageInput {
+  kingdomId: ID!
+  name: String!
+  description: String
+  iconUrl: String
+}
+
+input UpdateVillageInput {
+  id: ID!
+  version: Int!
+  name: String
+  description: String
+  iconUrl: String
+}
+
+extend type Query {
+  village(id: ID!): Village!
+  villages(kingdomId: ID!, pagination: PaginationInput): [Village!]!
+}
+
+extend type Mutation {
+  createVillage(input: CreateVillageInput!): Village!
+  updateVillage(input: UpdateVillageInput!): Village!
+  deleteVillage(id: ID!, version: Int!): Boolean!
+}
+
+type VillageOverview {
+  village: Village!
+  houseCount: Int!
+  questionCount: Int!
+  contentCount: Int!
+  conquests: Int!
+  badgesEarned: Int!
+}
+
+extend type Query {
+  villageOverview(villageId: ID!): VillageOverview!
+}

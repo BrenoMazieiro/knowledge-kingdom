@@ -1,0 +1,73 @@
+query GetQuestions($houseId: ID!) {
+  questions(houseId: $houseId) {
+    id
+    version
+    houseId
+    creatorId
+    text
+    difficulty
+    explanation
+    sortOrder
+    createdAt
+    options {
+      id
+      questionId
+      text
+      isCorrect
+      sortOrder
+    }
+  }
+}
+
+query GetQuestionPool($houseId: ID!) {
+  questionPool(houseId: $houseId) {
+    houseId
+    counts {
+      EASY
+      MEDIUM
+      HARD
+    }
+    total
+  }
+}
+
+mutation CreateQuestion($input: CreateQuestionInput!) {
+  createQuestion(input: $input) {
+    id
+    version
+    houseId
+    text
+    difficulty
+    explanation
+    sortOrder
+    createdAt
+    options {
+      id
+      text
+      isCorrect
+      sortOrder
+    }
+  }
+}
+
+mutation UpdateQuestion($input: UpdateQuestionInput!) {
+  updateQuestion(input: $input) {
+    id
+    version
+    houseId
+    text
+    difficulty
+    explanation
+    sortOrder
+    options {
+      id
+      text
+      isCorrect
+      sortOrder
+    }
+  }
+}
+
+mutation DeleteQuestion($id: ID!, $version: Int!) {
+  deleteQuestion(id: $id, version: $version)
+}

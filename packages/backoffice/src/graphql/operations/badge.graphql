@@ -1,0 +1,11 @@
+query GetMyBadges {
+  myBadges {
+    id
+    playerId
+    badgeType
+    scopeType
+    scopeId
+    quillsEarned
+    earnedAt
+  }
+}

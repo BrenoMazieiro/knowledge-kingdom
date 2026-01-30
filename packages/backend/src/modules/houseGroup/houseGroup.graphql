@@ -1,0 +1,23 @@
+type HouseGroup {
+  id: ID!
+  villageId: ID!
+  name: String!
+  description: String
+  createdByType: String!
+  createdById: ID!
+  createdAt: DateTime!
+}
+
+input CreateHouseGroupInput {
+  villageId: ID!
+  name: String!
+  description: String
+}
+
+extend type Query {
+  houseGroups(villageId: ID!): [HouseGroup!]!
+}
+
+extend type Mutation {
+  createHouseGroup(input: CreateHouseGroupInput!): HouseGroup!
+}

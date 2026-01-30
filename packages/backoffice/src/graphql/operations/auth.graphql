@@ -1,0 +1,23 @@
+query BMMe {
+  bmMe {
+    id
+    email
+    name
+    permissionLevel
+  }
+}
+
+mutation BMSignIn($input: BMSignInInput!) {
+  bmSignIn(input: $input) {
+    manager {
+      id
+      email
+      name
+      permissionLevel
+    }
+  }
+}
+
+mutation BMSignOut {
+  bmSignOut
+}

@@ -1,0 +1,51 @@
+type Content {
+  id: ID!
+  version: Int!
+  houseId: ID!
+  creatorId: ID!
+  title: String!
+  type: ContentType!
+  url: String
+  body: String
+  description: String
+  sortOrder: Int!
+  createdAt: DateTime!
+  house: House!
+  creator: User!
+}
+
+enum ContentType {
+  BOOK
+  VIDEO
+  ARTICLE
+}
+
+input CreateContentInput {
+  houseId: ID!
+  title: String!
+  type: ContentType!
+  url: String
+  body: String
+  description: String
+}
+
+input UpdateContentInput {
+  id: ID!
+  version: Int!
+  title: String
+  type: ContentType
+  url: String
+  body: String
+  description: String
+}
+
+extend type Query {
+  content(id: ID!): Content!
+  contents(houseId: ID!, pagination: PaginationInput): [Content!]!
+}
+
+extend type Mutation {
+  createContent(input: CreateContentInput!): Content!
+  updateContent(input: UpdateContentInput!): Content!
+  deleteContent(id: ID!, version: Int!): Boolean!
+}

@@ -1,0 +1,12 @@
+type User {
+  id: ID!
+  email: String!
+  name: String!
+  gameName: String!
+  emailVerified: Boolean!
+  createdAt: DateTime!
+}
+
+extend type Query {
+  users(pagination: PaginationInput): [User!]!
+}

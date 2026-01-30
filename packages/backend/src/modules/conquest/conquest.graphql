@@ -1,0 +1,15 @@
+type HouseConquest {
+  id: ID!
+  playerId: ID!
+  houseId: ID!
+  bestTier: String!
+  bestScorePercentage: Int!
+  totalQuillsEarned: Int!
+  attemptCount: Int!
+  lastAttemptAt: DateTime!
+  nextRetryAvailableAt: DateTime
+}
+
+extend type Query {
+  myConquests: [HouseConquest!]!
+}

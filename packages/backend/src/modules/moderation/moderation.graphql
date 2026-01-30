@@ -1,0 +1,26 @@
+type AuditLogEntry {
+  id: ID!
+  managerId: ID!
+  actionType: String!
+  entityType: String!
+  entityId: ID!
+  reason: String
+  createdAt: DateTime!
+}
+
+type BlockRecord {
+  id: ID!
+  entityType: String!
+  entityId: ID!
+  blockedById: ID!
+  reason: String!
+  presetMessage: String
+  blockedAt: DateTime!
+  unblockedAt: DateTime
+  unblockedById: ID
+}
+
+extend type Query {
+  auditLog(entityType: String!, entityId: ID!): [AuditLogEntry!]!
+  blockRecords(entityType: String!, entityId: ID!): [BlockRecord!]!
+}

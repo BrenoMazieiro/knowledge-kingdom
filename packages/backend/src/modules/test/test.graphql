@@ -1,0 +1,34 @@
+type TestSession {
+  id: ID!
+  playerId: ID!
+  houseId: ID!
+  attemptNumber: Int!
+  questionCount: Int!
+  correctCount: Int!
+  scorePercentage: Int!
+  tierAchieved: String
+  quillsEarned: Int!
+  isFirstOfDay: Boolean!
+  startedAt: DateTime!
+  completedAt: DateTime
+}
+
+type TestAnswer {
+  id: ID!
+  testSessionId: ID!
+  questionId: ID!
+  selectedOptionId: ID
+  isCorrect: Boolean!
+  answeredAt: DateTime
+}
+
+type StartTestPayload {
+  session: TestSession!
+  answers: [TestAnswer!]!
+}
+
+extend type Mutation {
+  startTest(houseId: ID!): StartTestPayload!
+  submitAnswer(answerId: ID!, selectedOptionId: ID!): TestAnswer!
+  completeTest(testSessionId: ID!): TestSession!
+}

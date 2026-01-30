@@ -1,0 +1,34 @@
+type BackofficeManager {
+  id: ID!
+  email: String!
+  name: String!
+  permissionLevel: String!
+  twoFactorEnabled: Boolean!
+  createdAt: DateTime!
+}
+
+type BMAuthPayload {
+  manager: BackofficeManager!
+}
+
+input BMSignInInput {
+  email: String!
+  password: String!
+}
+
+input InviteBMInput {
+  email: String!
+  name: String!
+  permissionLevel: String!
+}
+
+extend type Query {
+  bmMe: BackofficeManager
+  backofficeManagers: [BackofficeManager!]!
+}
+
+extend type Mutation {
+  bmSignIn(input: BMSignInInput!): BMAuthPayload!
+  bmSignOut: Boolean!
+  inviteBM(input: InviteBMInput!): BackofficeManager!
+}
